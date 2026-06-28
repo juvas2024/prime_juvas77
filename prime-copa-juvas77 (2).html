@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartão Prime Video - Jogo de HOJE</title>
+<meta name="description" content="JOGO DE HOJE: Croácia x Gana às 18h. 30 dias grátis no Prime Video. Sem CSP, sem erro.">
+<meta property="og:title" content="JOGO DE HOJE: Croácia x Gana às 18h">
+<meta property="og:description" content="30 dias grátis no Prime Video. Sem CSP, sem erro. #AntiTrava">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#00A8E1">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+    
+    * {
+        font-family: 'Inter', sans-serif;
+    }
+    
+    body {
+        background: #0a0e1a;
+        background-image: 
+            radial-gradient(circle at 20% 30%, rgba(0, 168, 225, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(50, 205, 50, 0.12) 0%, transparent 50%),
+            linear-gradient(180deg, #0a0e1a 0%, #121a2b 100%);
+        min-height: 100vh;
+    }
+    
+    .card-glow {
+        box-shadow: 0 0 60px rgba(0, 168, 225, 0.2), 0 20px 40px rgba(0, 0, 0, 0.4);
+        animation: subtlePulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes subtlePulse {
+        0%, 100% { box-shadow: 0 0 60px rgba(0, 168, 225, 0.2), 0 20px 40px rgba(0, 0, 0, 0.4); }
+        50% { box-shadow: 0 0 80px rgba(0, 168, 225, 0.35), 0 20px 40px rgba(0, 0, 0, 0.4); }
+    }
+    
+    .btn-pulse {
+        animation: btnPulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes btnPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+    }
+    
+    .badge-shine {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .badge-shine::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+        transform: rotate(45deg);
+        animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    .flag-animation {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+    }
+    
+    .gradient-text {
+        background: linear-gradient(135deg, #00A8E1 0%, #32CD32 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .countdown-box {
+        background: rgba(0, 168, 225, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 168, 225, 0.3);
+    }
+
+    .toast {
+        position: fixed;
+        bottom: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        z-index: 9999;
+        transition: bottom 0.3s ease-in-out;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .toast.show {
+        bottom: 30px;
+    }
+
+    .social-btn {
+        transition: all 0.3s ease;
+    }
+
+    .social-btn:active {
+        transform: scale(0.95);
+    }
+</style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 sm:p-6">
+    <div class="w-full max-w-xl">
+        <!-- Card Principal -->
+        <div class="card-glow bg-gradient-to-b from-[#141E30] to-[#0F172A] rounded-3xl border border-[#00A8E1]/20 overflow-hidden">
+            <!-- Header com Badge -->
+            <div class="bg-gradient-to-r from-[#00A8E1] to-[#32CD32] p-3 sm:p-4 text-center relative">
+                <div class="badge-shine inline-flex items-center gap-2 bg-black/30 rounded-full px-4 py-1.5">
+                    <i class="fa-solid fa-circle-check text-[#32CD32] text-sm"></i>
+                    <span class="text-white text-xs sm:text-sm font-bold tracking-wider">OFICIAL • SEM BLOQUEIO</span>
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8">
+                <!-- Bandeiras e VS -->
+                <div class="flex items-center justify-center gap-4 sm:gap-6 mb-6">
+                    <div class="flex flex-col items-center">
+                        <div class="flag-animation w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-red-600 flex items-center justify-center text-2xl sm:text-3xl shadow-lg border-2 border-white/20">
+                            🇭🇷
+                        </div>
+                        <span class="text-white/70 text-xs mt-2 font-semibold">CROÁCIA</span>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <div class="text-white font-black text-2xl sm:text-3xl">VS</div>
+                        <div class="text-[#00A8E1] text-xs font-bold mt-1">COPA 2026</div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <div class="flag-animation w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-2xl sm:text-3xl shadow-lg border-2 border-white/20" style="animation-delay: 0.5s; background: linear-gradient(to bottom, #CE1126 33%, #FCD116 33% 66%, #006B3F 66%);">
+                            🇬🇭
+                        </div>
+                        <span class="text-white/70 text-xs mt-2 font-semibold">GANA</span>
+                    </div>
+                </div>
+
+                <!-- Headline -->
+                <h1 class="text-white text-2xl sm:text-3xl lg:text-4xl font-black text-center leading-tight mb-3">
+                    JOGO DE HOJE: <br class="sm:hidden">
+                    <span class="gradient-text">Croácia x Gana às 18h</span>
+                </h1>
+
+                <!-- Subhead -->
+                <p class="text-center text-white/80 text-base sm:text-lg mb-6">
+                    <span class="font-bold text-[#00A8E1]">30 dias grátis</span> no Prime Video. 
+                    <span class="font-bold text-[#32CD32]">Sem CSP, sem erro.</span>
+                </p>
+
+                <!-- Contador Regressivo -->
+                <div class="mb-6" id="countdownContainer">
+                    <div class="text-center text-white/60 text-xs font-semibold mb-2 uppercase tracking-wider">A partida começa em:</div>
+                    <div class="grid grid-cols-4 gap-2 sm:gap-3" id="countdown">
+                        <div class="countdown-box rounded-xl p-2 sm:p-3 text-center">
+                            <div class="text-white text-xl sm:text-2xl font-black" id="hours">00</div>
+                            <div class="text-white/60 text-[10px] sm:text-xs">HORAS</div>
+                        </div>
+                        <div class="countdown-box rounded-xl p-2 sm:p-3 text-center">
+                            <div class="text-white text-xl sm:text-2xl font-black" id="minutes">00</div>
+                            <div class="text-white/60 text-[10px] sm:text-xs">MIN</div>
+                        </div>
+                        <div class="countdown-box rounded-xl p-2 sm:p-3 text-center">
+                            <div class="text-white text-xl sm:text-2xl font-black" id="seconds">00</div>
+                            <div class="text-white/60 text-xs">SEG</div>
+                        </div>
+                        <div class="countdown-box rounded-xl p-2 sm:p-3 text-center flex items-center justify-center">
+                            <div>
+                                <div class="text-[#32CD32] text-lg sm:text-xl font-black">AO VIVO</div>
+                                <div class="text-white/60 text-[10px] sm:text-xs">18H</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Button Principal -->
+                <a href="https://link.amazon/B017pnpb2" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="btn-pulse group block w-full bg-gradient-to-r from-[#00A8E1] to-[#00CBA9] hover:from-[#0095C8] hover:to-[#00B899] text-white font-black text-lg sm:text-xl py-4 sm:py-5 px-6 rounded-2xl text-center transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-[#00A8E1]/50 active:scale-95 mb-4">
+                    <span class="flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-play"></i>
+                        ASSISTIR EM HD 
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </a>
+
+                <!-- Trust Badges -->
+                <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-5 text-white/60 text-xs">
+                    <div class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-shield-halved text-[#32CD32]"></i>
+                        <span>100% Seguro</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-bolt text-[#00A8E1]"></i>
+                        <span>Anti-Trava</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <i class="fa-brands fa-amazon text-white"></i>
+                        <span>Oficial Prime</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de Botões Sociais 3x2 -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 px-6 sm:px-8 mb-6">
+                <!-- WhatsApp -->
+                <button onclick="shareWhatsApp()" 
+                        class="social-btn bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold py-3 px-4 rounded-xl text-sm transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span class="hidden sm:inline">WhatsApp</span>
+                    <span class="sm:hidden">Zap</span>
+                </button>
+
+                <!-- TikTok - Copia Link -->
+                <button onclick="copyTikTokLink()" 
+                        class="social-btn bg-black hover:bg-gray-900 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all duration-300 shadow-lg hover:shadow-xl border border-white/20 flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-tiktok text-lg"></i>
+                    <span>TikTok</span>
+                </button>
+
+                <!-- X/Twitter -->
+                <a href="https://twitter.com/intent/tweet?text=Assista%20TODA%20a%20Copa%202026%20no%20Prime%20Video!%2030%20dias%20grátis&url=https://link.amazon/B017pnpb2"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-btn bg-black hover:bg-gray-900 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all duration-300 shadow-lg hover:shadow-xl border border-white/20 flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-x-twitter text-lg"></i>
+                    <span class="hidden sm:inline">Twitter</span>
+                    <span class="sm:hidden">X</span>
+                </a>
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-black/30 px-6 py-4 border-t border-white/10">
+                <div class="flex items-center justify-between text-xs sm:text-sm mb-3">
+                    <div class="text-white/70">
+                        <i class="fa-regular fa-clock mr-1"></i>
+                        <span>Disponível hoje 18h</span>
+                    </div>
+                    <div class="text-white/50 font-semibold">#publi</div>
+                </div>
+                
+                <!-- Redes sociais do criador -->
+                <div class="flex flex-wrap items-center justify-center gap-4 text-white/70 text-sm mb-2">
+                    <a href="https://instagram.com/Juvas_77" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors">
+                        <i class="fa-brands fa-instagram text-[#E4405F]"></i>
+                        <span class="font-bold text-white">@Juvas_77</span>
+                    </a>
+                    <span class="text-white/30">•</span>
+                    <a href="https://tiktok.com/@kk" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors">
+                        <i class="fa-brands fa-tiktok text-white"></i>
+                        <span class="font-bold text-white">@kk</span>
+                    </a>
+                </div>
+
+                <div class="text-center text-white/40 text-[11px] sm:text-xs italic">
+                    <i class="fa-solid fa-mobile-screen mr-1"></i>
+                    Se travar, segure no botão e abra no Chrome
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fa-solid fa-circle-check text-[#32CD32] mr-2"></i>
+        <span id="toastMessage">Link copiado!</span>
+    </div>
+
+<script>
+    // Contador regressivo até 18h de 28/06/2026
+    function updateCountdown() {
+        const targetDate = new Date('2026-06-28T18:00:00-03:00').getTime();
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            document.getElementById('countdownContainer').innerHTML = `
+                <div class="countdown-box rounded-xl p-4 text-center">
+                    <div class="text-[#32CD32] text-2xl font-black animate-pulse">
+                        <i class="fa-solid fa-circle-dot mr-2"></i>AO VIVO AGORA
+                    </div>
+                    <div class="text-white/60 text-xs mt-1">Acesse o Prime Video</div>
+                </div>
+            `;
+            return;
+        }
+
+        const hours = Math.floor(distance / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    // Atualiza a cada 1 segundo
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Compartilhar no WhatsApp
+    function shareWhatsApp() {
+        const text = encodeURIComponent('🔥 JOGO DE HOJE: Croácia x Gana às 18h no Prime Video!\n\n✅ 30 dias grátis\n✅ Sem CSP, sem erro\n✅ Oficial • Sem Bloqueio\n\n👉 https://link.amazon/B017pnpb2\n\n#AntiTrava #Copa2026');
+        const whatsappUrl = `https://wa.me/?text=${text}`;
+        window.open(whatsappUrl, '_blank');
+    }
+
+    // Copiar link TikTok
+    function copyTikTokLink() {
+        const link = 'https://link.amazon/B017pnpb2';
+        
+        navigator.clipboard.writeText(link).then(() => {
+            showToast('Link copiado! Cole na bio ou vídeo');
+        }).catch(() => {
+            // Fallback para navegadores mais antigos
+            const textArea = document.createElement('textarea');
+            textArea.value = link;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast('Link copiado! Cole na bio ou vídeo');
+            } catch (err) {
+                showToast('Erro ao copiar link');
+            }
+            document.body.removeChild(textArea);
+        });
+    }
+
+    // Mostrar toast notification
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        toastMessage.textContent = message;
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    // Track click no CTA para analytics se necessário
+    document.querySelector('a[href*="link.amazon/B017pnpb2"]').addEventListener('click', function() {
+        console.log('CTA Prime Video Afiliado clicado - Anti-Trava');
+    });
+</script>
+<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
+<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
+<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;var a=target.closest?target.closest("a[href]"):null;if(!a||!a.href||!/^https?:\/\//.test(a.href))return;if(a.href.replace(/#.*$/,"")===loc)return;var productId=extractProductId(target)||extractProductId(a);if(!productId)return;e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*")},true)})();</script></body>
+</html>
