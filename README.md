@@ -1,2 +1,2 @@
-https://juvas2024.github.io/prime_juvas77/
+copa.html ou index.html
 
